@@ -21,7 +21,13 @@ export const createVitePlugins = (viteEnv: ViteEnv): (PluginOption | PluginOptio
     // vue 可以使用 jsx/tsx 语法
     vueJsx(),
     // esLint 报错信息显示在浏览器界面上
-    eslintPlugin(),
+    eslintPlugin({
+      // configFile: resolve(__dirname, "../.eslintrc.cjs"),
+      fix: true,
+      emitWarning: true,
+      include: ["src/**/*.js", "src/**/*.vue", "src/*.js", "src/*.vue", "src/**/*.tsx"],
+      exclude: ["node_modules/**"]
+    }),
     // name 可以写在 script 标签上
     vueSetupExtend({}),
     // 创建打包压缩配置
